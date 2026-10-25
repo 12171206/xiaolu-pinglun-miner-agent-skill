@@ -1,0 +1,6 @@
+interface:
+  display_name: "飞书视频评论选题"
+  short_description: "采集视频评论和截图，自动生成爆款潜力选题并归档飞书"
+  default_prompt: "使用 $feishu-video-topic-miner，根据我的赛道和视频链接采集评论、保留截图并生成爆款潜力选题。"
+policy:
+  allow_implicit_invocation: true
