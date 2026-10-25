@@ -12,33 +12,52 @@
 - 固定一个飞书多维表格，同赛道复用同一数据表，新赛道自动创建相同的 18 字段表；
 - 首次使用时由 Agent 引导完成飞书应用、权限、凭证、目标表和连接测试。
 
-## 安装
+## 三步完成安装
 
-安装 Python 3.10+，然后：
+先安装 [Python 3.10+](https://www.python.org/downloads/) 和 [Git](https://git-scm.com/downloads)，再打开 PowerShell 或终端执行以下命令。
+
+### 第一步：下载 Skill
+
+```bash
+git clone https://github.com/12171206/feishu-video-topic-miner-agent-skill.git
+cd feishu-video-topic-miner-agent-skill
+```
+
+不使用 Git 也可以点击仓库右上角 `Code → Download ZIP`，解压后在该文件夹中打开终端。
+
+### 第二步：安装运行依赖
 
 ```bash
 python -m pip install -r requirements.txt
 python -m playwright install chromium
 ```
 
-把本仓库整个文件夹复制到你的 AI 客户端技能目录。常见位置：
+这两行只安装运行依赖，还没有把 Skill 安装进 AI 软件。
 
-| 客户端 | 用户级目录 |
+### 第三步：安装到你的 AI 软件
+
+选择下面一条命令执行：
+
+| AI 软件 | 安装命令 |
 |---|---|
-| Codex | `~/.codex/skills/feishu-video-topic-miner/` |
-| Claude Code | `~/.claude/skills/feishu-video-topic-miner/` |
-| Cursor | `~/.cursor/skills/feishu-video-topic-miner/` |
-| Gemini CLI | `~/.gemini/skills/feishu-video-topic-miner/` |
-| GitHub Copilot | `~/.copilot/skills/feishu-video-topic-miner/` |
-| 通用 Agent Skills | `~/.agents/skills/feishu-video-topic-miner/` |
+| Codex | `python scripts/install_skill.py --agent codex` |
+| Claude Code | `python scripts/install_skill.py --agent claude` |
+| Cursor | `python scripts/install_skill.py --agent cursor` |
+| Gemini CLI | `python scripts/install_skill.py --agent gemini` |
+| GitHub Copilot | `python scripts/install_skill.py --agent copilot` |
+| 其他 Agent Skills 客户端 | `python scripts/install_skill.py --agent agents` |
 
-也可以运行安装助手：
+安装成功后重新启动对应的 AI 软件，然后对它说：
+
+> 使用 feishu-video-topic-miner，帮我连接飞书多维表格并检查配置。
+
+安装助手会自动复制到对应客户端的用户级技能目录。若客户端使用自定义目录，可运行：
 
 ```bash
-python scripts/install_skill.py --agent cursor
+python scripts/install_skill.py --agent agents --target-dir "你的技能目录"
 ```
 
-完整说明见 `references/install.md`。
+更详细的目录说明和更新方式见 [`references/install.md`](references/install.md)。
 
 ## 首次使用
 
